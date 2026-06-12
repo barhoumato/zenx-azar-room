@@ -162,34 +162,23 @@ def primary_button(label: str, on_click) -> ft.Container:
     )
 
 
-def build_background() -> ft.Stack:
-    return ft.Stack(
+def build_background() -> ft.Container:
+    return ft.Container(
         expand=True,
-        controls=[
-            ft.Image(
-                src="azr/bg.jpg",
-                fit=ft.BoxFit.COVER,
-                expand=True,
-                error_content=ft.Container(
-                    expand=True,
-                    bgcolor=COLORS["abyss"],
-                ),
-            ),
-            ft.Container(
-                expand=True,
-                gradient=ft.LinearGradient(
-                    begin=ft.Alignment(0, -1),
-                    end=ft.Alignment(0, 1),
-                    colors=[
-                        COLORS["overlay_top"],
-                        COLORS["overlay_mid"],
-                        COLORS["overlay_bottom"],
-                    ],
-                    stops=[0.0, 0.55, 1.0],
-                ),
-                ignore_interactions=True,
-            ),
-        ],
+        image=ft.DecorationImage(
+            src="bg.jpg",
+            fit=ft.BoxFit.COVER,
+        ),
+        gradient=ft.LinearGradient(
+            begin=ft.Alignment(0, -1),
+            end=ft.Alignment(0, 1),
+            colors=[
+                COLORS["overlay_top"],
+                COLORS["overlay_mid"],
+                COLORS["overlay_bottom"],
+            ],
+            stops=[0.0, 0.55, 1.0],
+        ),
     )
 
 
@@ -643,10 +632,17 @@ def main(page: ft.Page):
     update()
 
 
+import flet as ft
+import os
+
+app = ft.run(
+    main,
+    assets_dir="assets",
+    export_asgi_app=True,
+)
+
 if __name__ == "__main__":
     ft.run(
         main,
-        view=ft.AppView.WEB_BROWSER,
-        port=8550,
         assets_dir="assets",
     )
