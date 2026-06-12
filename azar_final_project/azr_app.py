@@ -169,15 +169,17 @@ def build_background() -> ft.Container:
             src="bg.jpg",
             fit=ft.BoxFit.COVER,
         ),
-        gradient=ft.LinearGradient(
-            begin=ft.Alignment(0, -1),
-            end=ft.Alignment(0, 1),
-            colors=[
-                COLORS["overlay_top"],
-                COLORS["overlay_mid"],
-                COLORS["overlay_bottom"],
-            ],
-            stops=[0.0, 0.55, 1.0],
+        foreground_decoration=ft.BoxDecoration(
+            gradient=ft.LinearGradient(
+                begin=ft.Alignment(0, -1),
+                end=ft.Alignment(0, 1),
+                colors=[
+                    COLORS["overlay_top"],
+                    COLORS["overlay_mid"],
+                    COLORS["overlay_bottom"],
+                ],
+                stops=[0.0, 0.55, 1.0],
+            ),
         ),
     )
 
