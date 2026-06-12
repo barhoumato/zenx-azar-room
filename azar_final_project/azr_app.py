@@ -137,7 +137,12 @@ def input_field(hint: str, theme: dict) -> ft.TextField:
     )
 
 
-def primary_button(label: str, on_click) -> ft.Container:
+def primary_button(
+    label: str,
+    on_click=None,
+    url: str | None = None,
+    url_target: ft.UrlTarget = ft.UrlTarget.SELF,
+) -> ft.Container:
     return ft.Container(
         width=MAX_WIDTH,
         content=ft.FilledButton(
@@ -146,11 +151,12 @@ def primary_button(label: str, on_click) -> ft.Container:
                 size=16,
                 color=COLORS["button_text"],
                 weight=ft.FontWeight.W_600,
-                font_family="Arial",
                 letter_spacing=0.3,
                 height=1.1,
             ),
             on_click=on_click,
+            url=url,
+            url_target=url_target,
             width=MAX_WIDTH,
             height=54,
             style=ft.ButtonStyle(
@@ -556,10 +562,14 @@ def build_page_final(state: RoomState, on_enter) -> ft.Stack:
                 padding=34,
             ),
             space(52),
-            primary_button("ENTER THE SYSTEM", on_enter),
-            space(18),
-            whisper("The system waits beyond the threshold.", t["text_sub"], size=10),
-            space(36),
+primary_button(
+    "ENTER THE SYSTEM",
+    url="https://zenx.academy/enter-the-system-the-internal-operating-system-zenx/",
+    url_target=ft.UrlTarget.SELF,
+),
+space(18),
+whisper("The system waits beyond the threshold.", t["text_sub"], size=10),
+space(36),
         ],
         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
     )
